@@ -8,6 +8,7 @@ An app that saves your memories.
 
 ## Project files structure
 
+```
 memories-bucket-fullstack
 │  packages/
 │  ├── server-pkg
@@ -19,3 +20,4 @@ memories-bucket-fullstack
 ├── lerna.json
 ├── package.json
  
+```
