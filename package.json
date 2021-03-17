@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "start-dev": "lerna run start --scope={@memo-bucket/server,@memo-bucket/webapp}",
+    "test": "lerna run test --since",
+    "new-version": "lerna version --conventional-commits --yes",
+    "diff": "lerna diff"
+  },
+  "devDependencies": {
+    "lerna": "^4.0.0"
+  },
+  "name": "memories-bucket"
+}
