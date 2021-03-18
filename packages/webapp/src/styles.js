@@ -9,9 +9,7 @@ export default makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  heading: {
-    color: '#808a69',
-  },
+  heading: {},
   image: {
     marginLeft: '15px',
   },

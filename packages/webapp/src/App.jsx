@@ -1,16 +1,19 @@
 // UTILITIES;
+import { useState, useEffect } from 'react';
 import { Container, Typography, Grow, Grid, AppBar } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import memos from './assets/memos.svg';
-import { useEffect } from 'react';
 import makeStyles from './styles';
 import { getAllPosts } from './redux/action/posts/post.action';
 
 // COMPONENTS:
-import Posts from './components/posts/PostsWrapper.comp';
+import PostsWrapper from './components/posts/PostsWrapper.comp';
 import Form from './components/form/Form.comp';
 
 function App() {
+  // grab the post's Id:
+  const [currentId, setCurrentId] = useState(null);
+
   // dispatch actions:
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,13 +25,14 @@ function App() {
   return (
     <Container maxWidth="lg">
       <AppBar className={classes.appBar} position="static" color="inherit">
-        <Typography className={classes.heading} variant="h2">
+        <Typography className={classes.heading} variant="h2" color="primary">
           Memories
         </Typography>
         <img
           className={classes.image}
           src={memos}
           alt="Memories bring back memories."
+          title="Memories bring back memories."
         />
       </AppBar>
       <Grow in>
@@ -40,10 +44,10 @@ function App() {
             spacing={3}
           >
             <Grid item xs={12} sm={8}>
-              <Posts />
+              <PostsWrapper setCurrentId={setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={4}>
-              <Form />
+              <Form setCurrentId={setCurrentId} currentId={currentId} />
             </Grid>
           </Grid>
         </Container>

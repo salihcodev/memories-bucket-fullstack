@@ -1,3 +1,4 @@
+import { indigo } from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
@@ -15,8 +16,17 @@ export default makeStyles((theme) => ({
     justifyContent: 'center',
   },
   fileInput: {
-    width: '97%',
-    margin: '10px 0',
+    width: '100%',
+    margin: '1rem 0',
+    border: `2px dashed ${indigo[200]}`,
+    minHeight: '5rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fileUpload: {
+    width: '100%',
+    height: '100%',
   },
   formClear: {
     marginBottom: '2rem',
