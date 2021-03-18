@@ -8,11 +8,17 @@ const INITIAL_STATE = {
 // action interface:
 interface actionsInterface {
   type: string;
-  payload: object;
+  payload: any;
 }
 
 const postsReducer = (state = INITIAL_STATE, action: actionsInterface) => {
   switch (action.type) {
+    case postTypes.UPDATE_POST:
+      const withOneToUpdate = state.allPosts.map((post: any) =>
+        post._id === action.payload._id ? action.payload : post
+      );
+      return { ...state, allPosts: withOneToUpdate };
+
     case postTypes.FETCH_ALL_POSTS:
       return { ...state, allPosts: action.payload };
 

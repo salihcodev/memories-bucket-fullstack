@@ -1,12 +1,15 @@
 // utils:
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import FileBase from 'react-file-base64';
 import makeStyle from './styles';
-import { useDispatch } from 'react-redux';
-import { createNewPost } from '../../redux/action/posts/post.action';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  createNewPost,
+  updatePost,
+} from '../../redux/action/posts/post.action';
 
-const Form = () => {
+const Form = ({ setCurrentId, currentId }) => {
   // styles:
   const classes = makeStyle();
 
@@ -31,7 +34,7 @@ const Form = () => {
     cover: null,
   };
 
-  // store
+  // state:
   const [memoData, setMemoData] = useState(inputsSchema);
 
   // clear
@@ -39,10 +42,22 @@ const Form = () => {
 
   // handle form submission
   const dispatch = useDispatch();
+  // to fill update:
+  const postToUpdate = useSelector(({ posts: { allPosts } }) =>
+    currentId ? allPosts.find((post) => post._id === currentId) : null
+  );
+
+  useEffect(() => {
+    if (postToUpdate) setMemoData(postToUpdate);
+  }, [postToUpdate]);
 
   const handleSubmission = (e) => {
     e.preventDefault();
-    dispatch(createNewPost(memoData));
+    if (currentId) {
+      dispatch(updatePost(currentId, memoData));
+    } else {
+      dispatch(createNewPost(memoData));
+    }
     clearFormInputs();
   };
 
@@ -92,8 +107,9 @@ const Form = () => {
           fullWidth
         />
         {/* memory cover file */}
-        <div className="upload">
+        <div className={`upload ${classes.fileInput}`}>
           <FileBase
+            className={classes.fileUpload}
             type="file"
             multiple={false}
             onDone={({ base64 }) => setMemoData({ ...memoData, cover: base64 })}
@@ -116,7 +132,7 @@ const Form = () => {
           className={classes.formClear}
           size="small"
           variant="outlined"
-          color="secondary"
+          color="default"
           fullWidth
           onClick={clearFormInputs}
         >
