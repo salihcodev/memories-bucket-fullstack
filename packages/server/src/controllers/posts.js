@@ -31,7 +31,7 @@ export const updatePost = async (req, res) => {
       ? res.status(404).send('No post with that ID')
       : null;
 
-    const updatedPost = await PostMessage.findByIdAndUpdate(_id, postToUpdate, {
+    const updatedPost = await PostMessage.findByIdAndUpdate(_id, {...postToUpdate, _id}, {
       new: true,
     });
 

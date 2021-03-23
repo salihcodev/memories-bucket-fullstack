@@ -18,7 +18,8 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getAllPosts());
-  }, [dispatch]);
+  }, [currentId, dispatch]);
+
 
   // STYLES:
   const classes = makeStyles();
