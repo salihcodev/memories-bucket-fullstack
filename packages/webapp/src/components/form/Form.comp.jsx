@@ -38,7 +38,10 @@ const Form = ({ setCurrentId, currentId }) => {
   const [memoData, setMemoData] = useState(inputsSchema);
 
   // clear
-  const clearFormInputs = () => setMemoData(inputsSchema);
+  const clearFormInputs = () => {
+    setMemoData(inputsSchema);
+    setCurrentId(null);
+  };
 
   // handle form submission
   const dispatch = useDispatch();
@@ -69,7 +72,9 @@ const Form = ({ setCurrentId, currentId }) => {
         autoComplete="off"
         onSubmit={handleSubmission}
       >
-        <Typography variant="h5">Setup A Memory</Typography>
+        <Typography variant="h5">
+          {currentId ? `Edit` : `Setup`} A Memory
+        </Typography>
 
         {/* inputs */}
         <TextField
