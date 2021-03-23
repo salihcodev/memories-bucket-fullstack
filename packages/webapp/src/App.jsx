@@ -20,6 +20,7 @@ function App() {
     dispatch(getAllPosts());
   }, [currentId, dispatch]);
 
+
   // STYLES:
   const classes = makeStyles();
   return (
