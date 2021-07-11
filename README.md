@@ -8,7 +8,7 @@ An app that saves your memories.
 
 ## Project files structure
 
-```
+```bash
 memories-bucket-fullstack
 │  packages/
 │  ├── server-pkg
